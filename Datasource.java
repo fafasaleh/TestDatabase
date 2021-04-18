@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Datasource {
     public static final String DB_NAME="music.db";
-   public static final String CONNECTION_STRING="jdbc:sqlite:D:\\Music\\" + DB_NAME;
+   public static final String CONNECTION_STRING="jdbc:sqlite:D:\\Music\\"+ DB_NAME;
 
    public static final String TABLE_ALBUMS="albums";
    public static final String COLUMN_ALBUM_ID="id";
@@ -65,4 +65,28 @@ public class Datasource {
             return null;
         }
     }
+
+    public void queryAlbumDElete (){
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(" DELETE FROM "+TABLE_ALBUMS+" WHERE name ="+COLUMN_ALBUM_NAME)){
+        }catch (SQLException e ){
+            System.out.println(" Query failed :" + e.getMessage());
+            e.printStackTrace();
+
+        }
+    }
+
+    public void queryArtistAlert (){
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(" ALTER TABLE "+ TABLE_ALBUMS +"ADD COLUMN Year VARCHAR(200);")){
+        }catch (SQLException e ){
+            System.out.println(" Query failed :" + e.getMessage());
+            e.printStackTrace();
+
+        }
+    }
+
+
 }
